@@ -194,7 +194,7 @@ export default function Appointment() {
                       <option key={s} value={s}>{s}</option>
                     ))}
                   </select>
-                  <label htmlFor="service" className={`form-label ${form.service ? 'transform -translate-y-3 scale-75 text-dental-blue' : ''}`}>
+                  <label htmlFor="service" className="form-label">
                     Treatment Required *
                   </label>
                 </div>
@@ -209,7 +209,7 @@ export default function Appointment() {
                     className="form-input"
                     min={new Date().toISOString().split("T")[0]}
                   />
-                  <label htmlFor="date" className={`form-label ${form.date ? 'transform -translate-y-3 scale-75 text-dental-blue' : ''}`}>
+                  <label htmlFor="date" className="form-label">
                     Preferred Date
                   </label>
                 </div>

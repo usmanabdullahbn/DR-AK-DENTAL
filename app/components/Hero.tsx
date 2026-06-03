@@ -78,7 +78,7 @@ export default function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden scroll-mt-20 mt-20"
       style={{
         background: "linear-gradient(135deg, #002D40 0%, #004D6B 30%, #006B94 60%, #00898A 100%)",
       }}
@@ -172,18 +172,16 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="flex flex-wrap gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-4 mb-12"
             >
               <motion.a
                 href="#appointment"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary px-6 py-2 h-12 min-w-max rounded-2xl font-display font-bold text-sm flex items-center justify-center transition-all"
+                className="btn-primary px-8 py-3 rounded-2xl font-display font-bold text-sm flex items-center justify-center gap-2 transition-all whitespace-nowrap"
               >
-                <div className="w-48 h-6 rounded-full flex items-center justify-center gap-3">
-                  <span>🗓</span>
-                  <span>Book Appointment</span>
-                </div>
+                <span>🗓</span>
+                <span>Book Appointment</span>
               </motion.a>
               <motion.a
                 href="https://wa.me/923178488790"
@@ -191,7 +189,7 @@ export default function Hero() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-outline px-8 py-4 rounded-2xl font-display font-bold text-base flex items-center gap-2 transition-all"
+                className="btn-outline px-8 py-3 rounded-2xl font-display font-bold text-sm flex items-center justify-center gap-2 transition-all whitespace-nowrap"
               >
                 <span>💬</span>
                 <span>WhatsApp Us</span>

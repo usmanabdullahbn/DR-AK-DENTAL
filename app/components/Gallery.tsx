@@ -38,7 +38,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Gallery grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {galleryItems.map((item, i) => (
             <motion.div
               key={i}
@@ -47,7 +47,7 @@ export default function Gallery() {
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
               onClick={() => setActive(i)}
-              className="relative rounded-3xl overflow-hidden cursor-pointer group"
+              className="relative rounded-3xl overflow-hidden cursor-pointer group h-full flex flex-col"
               style={{
                 aspectRatio: i === 0 || i === 5 ? "1/1.3" : "1/1",
                 background: `linear-gradient(135deg, ${item.color}22, ${item.color}44)`,

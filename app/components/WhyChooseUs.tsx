@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {reasons.map((reason, i) => (
             <motion.div
               key={i}
@@ -84,7 +84,7 @@ export default function WhyChooseUs() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className="group glass rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:bg-white/15"
+              className="group glass rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:bg-white/15 h-full flex flex-col"
             >
               <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 {reason.icon}
@@ -92,7 +92,7 @@ export default function WhyChooseUs() {
               <h3 className="font-display font-bold text-white text-xl mb-3">
                 {reason.title}
               </h3>
-              <p className="text-white/60 font-body text-sm leading-relaxed">
+              <p className="text-white/60 font-body text-sm leading-relaxed flex-grow">
                 {reason.description}
               </p>
             </motion.div>

@@ -94,7 +94,7 @@ export default function Services() {
         </motion.div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 auto-rows-fr">
           {services.map((service, i) => (
             <motion.div
               key={i}
@@ -102,7 +102,7 @@ export default function Services() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="service-card group relative bg-white rounded-3xl p-6 shadow-lg shadow-gray-100 border border-gray-100 cursor-pointer overflow-hidden"
+              className="service-card group relative bg-white rounded-3xl p-6 shadow-lg shadow-gray-100 border border-gray-100 cursor-pointer overflow-hidden h-full flex flex-col"
             >
               {/* Gradient border on hover */}
               <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"
@@ -119,7 +119,7 @@ export default function Services() {
               <h3 className="font-display font-bold text-gray-900 text-base mb-3 leading-tight">
                 {service.title}
               </h3>
-              <p className="text-gray-500 font-body text-sm leading-relaxed">
+              <p className="text-gray-500 font-body text-sm leading-relaxed flex-grow">
                 {service.description}
               </p>
 

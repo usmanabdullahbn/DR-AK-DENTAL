@@ -91,11 +91,10 @@ export default function Navbar() {
                 href="#appointment"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary px-6 py-2 h-12 min-w-max rounded-2xl font-display font-bold text-sm flex items-center justify-center  transition-all"
-              ><div className="w-48 h-6 rounded-full flex items-center justify-center gap-3">
+                className="btn-primary px-6 py-2 rounded-2xl font-display font-bold text-sm flex items-center justify-center gap-2 transition-all whitespace-nowrap"
+              >
                 <span>🗓</span>
-              <span>Book Appointment</span>
-              </div>
+                <span>Book Appointment</span>
               </motion.a>
             </div>
 
