@@ -34,7 +34,7 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 px-2">
             {/* Logo */}
             <motion.a
@@ -121,7 +121,7 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed top-[72px] left-0 right-0 z-40 bg-white/95 nav-blur shadow-xl shadow-dental-blue/10 border-t border-dental-blue/10"
           >
-            <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
+            <div className="max-w-full mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}

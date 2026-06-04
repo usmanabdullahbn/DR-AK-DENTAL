@@ -52,7 +52,7 @@ export default function About() {
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-5"
         style={{ background: "radial-gradient(circle at right, #006B94, transparent)" }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -73,7 +73,7 @@ export default function About() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[650px] mb-20">
           {/* Left - Visual */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -127,6 +127,7 @@ export default function About() {
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col justify-center h-full"
           >
             <h3 className="font-display font-bold text-2xl text-gray-900 mb-4">
               Comprehensive Dental Care You Can Trust
@@ -161,11 +162,12 @@ export default function About() {
 
             <motion.a
               href="#services"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 mt-8 bg-dental-blue text-white font-display font-semibold px-8 py-4 rounded-2xl hover:bg-dental-blue-dark transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary mt-8"
+              style={{ background: "linear-gradient(135deg, #006B94, #004D6B)" }}
             >
-              Explore Our Services
+              <span>Explore Our Services</span>
               <span>→</span>
             </motion.a>
           </motion.div>

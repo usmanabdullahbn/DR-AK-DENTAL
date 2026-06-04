@@ -123,8 +123,8 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-40 pb-40 lg:pb-48">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-96 lg:pt-40 pb-40 lg:pb-48">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left content */}
           <div>
             {/* Badge */}

@@ -40,7 +40,7 @@ export default function Appointment() {
       <div className="absolute inset-0 opacity-[0.03]"
         style={{ background: "radial-gradient(circle at 70% 50%, #006B94, transparent)" }} />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left info */}
           <motion.div

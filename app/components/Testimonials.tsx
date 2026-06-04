@@ -63,7 +63,7 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
