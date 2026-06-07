@@ -123,12 +123,12 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-96 lg:pt-40 pb-40 lg:pb-48">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div style={{ marginTop: "100px", marginLeft: "24px", marginRight: "24px" }} className="relative z-10 max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-32 lg:pt-40 pb-20 md:pb-32 lg:pb-40">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left content */}
           <div>
             {/* Badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -140,14 +140,15 @@ export default function Hero() {
               </span>
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
               <span className="text-green-400 text-xs font-medium">Open Now</span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Heading */}
             <motion.h1
+
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight text-white mb-6"
+              className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-white mb-6"
             >
               Your Perfect
               <br />
@@ -160,7 +161,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-white/75 text-lg font-body leading-relaxed mb-10 max-w-lg"
+              className="text-white/75 text-base sm:text-lg font-body leading-relaxed mb-8 max-w-lg"
             >
               DR AK Dental & Aesthetic Clinic delivers world-class dental care with
               cutting-edge technology, compassionate care, and stunning smile transformations —
@@ -172,9 +173,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-4 mb-8"
             >
               <motion.a
+              style={{margin: "12px 0"}}
                 href="#appointment"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -198,10 +200,12 @@ export default function Hero() {
 
             {/* Trust badges */}
             <motion.div
+              style={{margin: "12px 0"}}
+
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap gap-4 md:gap-6"
             >
               {[
                 { icon: <Shield size={16} />, text: "Certified Doctors" },
@@ -217,7 +221,9 @@ export default function Hero() {
           </div>
 
           {/* Right - Floating cards */}
-          <div className="relative hidden lg:block">
+          <div
+           
+          className="relative hidden lg:block">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -262,22 +268,6 @@ export default function Hero() {
               {/* Floating stat cards */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-8 -left-10 glass rounded-2xl p-4 min-w-[160px] lg:-left-6"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center">
-                    <span className="text-green-400">✓</span>
-                  </div>
-                  <div>
-                    <div className="text-white font-display font-bold text-lg">2,000+</div>
-                    <div className="text-white/60 text-xs font-body">Happy Patients</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute top-1/3 -left-6 glass rounded-2xl p-4 min-w-[150px]"
               >
@@ -295,7 +285,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4"
         >
           {stats.map((stat, i) => (
             <div key={i} className="glass rounded-2xl p-5 text-center">
@@ -308,7 +298,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.a
+      {/* <motion.a
         href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -322,7 +312,7 @@ export default function Hero() {
         >
           <ChevronDown size={20} />
         </motion.div>
-      </motion.a>
+      </motion.a> */}
     </section>
   );
 }

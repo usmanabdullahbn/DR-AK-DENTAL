@@ -41,7 +41,7 @@ export default function Appointment() {
         style={{ background: "radial-gradient(circle at 70% 50%, #006B94, transparent)" }} />
 
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}

@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {reasons.map((reason, i) => (
             <motion.div
               key={i}
@@ -104,6 +104,7 @@ export default function WhyChooseUs() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
+          style={{ margin: "0 24px" }}
           className="mt-16 glass rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div>

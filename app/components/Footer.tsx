@@ -28,7 +28,7 @@ export default function Footer() {
         }} />
 
       <div className="relative max-w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">

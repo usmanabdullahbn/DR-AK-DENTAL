@@ -38,7 +38,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Gallery grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
           {galleryItems.map((item, i) => (
             <motion.div
               key={i}

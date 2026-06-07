@@ -94,7 +94,7 @@ export default function Services() {
         </motion.div>
 
         {/* Services grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 auto-rows-fr">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 auto-rows-fr">
           {services.map((service, i) => (
             <motion.div
               key={i}

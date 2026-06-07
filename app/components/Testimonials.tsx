@@ -87,6 +87,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
+          style={{ margin: "0 24px" }}
           className="relative"
         >
           <div className="max-w-4xl mx-auto">
@@ -174,6 +175,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
+          style={{ margin: "0 24px" }}
           className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-12"
         >
           {testimonials.map((t, i) => (

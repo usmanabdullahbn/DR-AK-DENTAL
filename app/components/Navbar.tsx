@@ -35,7 +35,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 px-2">
+          <div style={{ margin: "0 24px" }} className="flex items-center justify-between h-20 px-2">
             {/* Logo */}
             <motion.a
               href="#home"

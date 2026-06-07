@@ -58,22 +58,25 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center"
         >
-          <span className="inline-block bg-dental-blue/10 text-dental-blue font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full mb-4">
+          <span className="inline-block bg-dental-blue/10 text-dental-blue font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full">
             About Us
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
+          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900">
             Welcome to <span className="gradient-text">DR AK Dental</span>
             <br />& Aesthetic Clinic
           </h2>
-          <p className="text-gray-500 font-body text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 font-body text-lg mx-auto">
             Your perfect smile is just a visit away. We combine advanced dental technology
-            with compassionate care for outstanding results.
+            with <br /> compassionate care for outstanding results.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[650px] mb-20">
+        <div
+          style={{ margin: "0 24px" }}
+
+          className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[650px] mb-20">
           {/* Left - Visual */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -175,6 +178,8 @@ export default function About() {
 
         {/* Stats */}
         <motion.div
+          style={{ margin: "0 24px" }}
+
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}

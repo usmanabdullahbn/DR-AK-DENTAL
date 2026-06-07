@@ -28,7 +28,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
           {/* Contact info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
