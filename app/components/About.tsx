@@ -47,155 +47,216 @@ export default function About() {
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-gray-50 relative overflow-hidden">
+    <section
+      id="about"
+      ref={sectionRef}
+      style={{
+        padding: "80px 0",
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "#f9fafb"
+      }}
+    >
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-5"
-        style={{ background: "radial-gradient(circle at right, #006B94, transparent)" }} />
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          width: "33.333%",
+          height: "100%",
+          opacity: 0.05,
+          pointerEvents: "none",
+          background: "radial-gradient(circle at right, #006B94, transparent)"
+        }}
+      />
 
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <span className="inline-block bg-dental-blue/10 text-dental-blue font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full">
+          <span
+            className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-3"
+            style={{ backgroundColor: "rgba(0, 107, 148, 0.1)", color: "#006B94" }}
+          >
             About Us
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900">
+          <h2
+            className="font-black text-gray-900 mb-3"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.2" }}
+          >
             Welcome to <span className="gradient-text">DR AK Dental</span>
             <br />& Aesthetic Clinic
           </h2>
-          <p className="text-gray-500 font-body text-lg mx-auto">
-            Your perfect smile is just a visit away. We combine advanced dental technology
-            with <br /> compassionate care for outstanding results.
+          <p className="text-gray-500 text-base md:text-lg mx-auto">
+            Your perfect smile is just a visit away. We combine advanced dental technology with<br /> compassionate care for outstanding results.
           </p>
         </motion.div>
 
+        {/* Main Grid Content - Reduced top gap */}
         <div
-          style={{ margin: "0 24px" }}
-
-          className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[650px] mb-20">
-          {/* Left - Visual */}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch"
+          style={{ marginBottom: "48px", boxSizing: "border-box" }}
+        >
+          {/* Left - Visual Banner Card */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            style={{ position: "relative", display: "flex", flexDirection: "column", justifyContent: "center" }}
           >
-            {/* Main card */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-dental-blue/20"
-              style={{ background: "linear-gradient(135deg, #004D6B, #006B94, #00898A)", minHeight: "400px" }}>
-              <div className="p-10 text-white h-full flex flex-col justify-center">
-                <div className="text-8xl mb-6 text-center">🦷</div>
-                <h3 className="font-display font-black text-3xl text-center mb-4">
+            <div
+              style={{
+                background: "linear-gradient(135deg, #004D6B, #006B94, #00898A)",
+                minHeight: "380px",
+                position: "relative",
+                borderRadius: "24px",
+                overflow: "hidden",
+                boxShadow: "0 25px 50px -12px rgba(0, 107, 148, 0.25)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "40px 24px",
+                boxSizing: "border-box"
+              }}
+            >
+              <div style={{ position: "relative", zIndex: 3, textAlign: "center", color: "#ffffff" }}>
+                <div style={{ fontSize: "72px", marginBottom: "16px" }}>🦷</div>
+                <h3 className="font-bold text-2xl md:text-3xl mb-3" style={{ lineHeight: "1.3" }}>
                   DR AK Dental
                   <br />& Aesthetic Clinic
                 </h3>
-                <p className="text-white/80 font-body text-center text-sm leading-relaxed">
+                <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "14px", fontStyle: "italic", marginBottom: "24px" }}>
                   "Your perfect Smile is just a visit away"
                 </p>
-                <div className="flex justify-center gap-4 mt-6">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold">⭐⭐⭐⭐⭐</div>
-                    <div className="text-white/60 text-xs">Google Reviews</div>
+                <div style={{ display: "flex", justifyContent: "center", gap: "16px" }}>
+                  <div>
+                    <div style={{ fontSize: "20px", letterSpacing: "2px", marginBottom: "4px" }}>⭐⭐⭐⭐⭐</div>
+                    <div style={{ color: "rgba(255, 255, 255, 0.6)", fontSize: "12px", textTransform: "uppercase", }}>Google Reviews</div>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative circles */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full border border-white/10" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 rounded-full border border-white/10" />
+              {/* Decorative structural accent circles */}
+              <div style={{ position: "absolute", top: "-40px", right: "-40px", width: "160px", height: "160px", borderRadius: "50%", border: "1px solid rgba(255, 255, 255, 0.1)", pointerEvents: "none" }} />
+              <div style={{ position: "absolute", bottom: "-40px", left: "-40px", width: "128px", height: "128px", borderRadius: "50%", border: "1px solid rgba(255, 255, 255, 0.1)", pointerEvents: "none" }} />
             </div>
 
-            {/* Floating achievement card */}
+            {/* Floating Location Badge */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
-              className="absolute bottom-0 lg:bottom-4 right-0 lg:right-4 lg:-bottom-8 lg:-right-8 bg-white rounded-2xl p-5 shadow-xl shadow-dental-blue/15 min-w-[180px] z-20"
+              style={{
+                position: "absolute",
+                bottom: "16px",
+                right: "16px",
+                backgroundColor: "#ffffff",
+                borderRadius: "16px",
+                padding: "16px",
+                boxShadow: "0 20px 25px -5px rgba(0, 107, 148, 0.15)",
+                minWidth: "190px",
+                zIndex: 4,
+                boxSizing: "border-box"
+              }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-dental-blue/10 flex items-center justify-center text-2xl">📍</div>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div style={{ width: "40px", height: "40px", borderRadius: "12px", backgroundColor: "rgba(0, 107, 148, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px" }}>📍</div>
                 <div>
-                  <div className="font-display font-bold text-gray-900 text-sm">Gulistan-e-Johar</div>
-                  <div className="text-gray-500 text-xs font-body">Karachi, Sindh</div>
+                  <div className="font-bold text-gray-900 text-sm">Gulistan-e-Johar</div>
+                  <div className="text-gray-500 text-xs">Karachi, Sindh</div>
                 </div>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right - Content */}
+          {/* Right - Text Content Block */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col justify-center h-full"
+            style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}
           >
-            <h3 className="font-display font-bold text-2xl text-gray-900 mb-4">
+            <h3 className="font-bold text-2xl text-gray-900 mb-4">
               Comprehensive Dental Care You Can Trust
             </h3>
-            <p className="text-gray-500 font-body leading-relaxed mb-6">
+            <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-4">
               At DR AK Dental & Aesthetic Clinic, we provide comprehensive dental care with a gentle
               touch. Located in Gulistan-e-Johar, Karachi, our clinic is equipped with the latest
               technology to deliver exceptional results.
             </p>
-            <p className="text-gray-500 font-body leading-relaxed mb-8">
+            <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6">
               From routine cleanings to complete smile makeovers, our experienced team is dedicated
               to helping you achieve the smile you've always dreamed of — comfortably and affordably.
             </p>
 
-            {/* Feature list */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Feature Check Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3" style={{ marginBottom: "32px" }}>
               {features.map((feat, i) => (
                 <motion.div
                   key={feat}
                   initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.4 + i * 0.1 }}
-                  className="flex items-center gap-3"
+                  style={{ display: "flex", alignItems: "center", gap: "12px" }}
                 >
-                  <div className="w-6 h-6 rounded-full bg-dental-blue/10 flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-dental-blue" />
+                  <div style={{ width: "24px", height: "24px", borderRadius: "50%", backgroundColor: "rgba(0, 107, 148, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <div style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#006B94" }} />
                   </div>
-                  <span className="text-gray-700 font-body text-sm">{feat}</span>
+                  <span className="text-gray-700 text-sm font-medium">{feat}</span>
                 </motion.div>
               ))}
             </div>
 
+            {/* Primary Action Button */}
             <motion.a
               href="#services"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="btn-primary mt-8"
-              style={{ background: "linear-gradient(135deg, #006B94, #004D6B)" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-2xl font-display font-bold text-sm flex items-center justify-center gap-2 transition-all whitespace-nowrap text-white"
+              style={{
+                background: "#006B94"
+              }}
             >
-              <span>Explore Our Services</span>
-              <span>→</span>
+              <span>📚</span>
+              <span style={{ fontWeight: "bold", padding: "8px" }}>Explore Our Services</span>
             </motion.a>
           </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* Counter Statistics Grid */}
         <motion.div
-          style={{ margin: "0 24px" }}
-
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
         >
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white rounded-3xl p-8 text-center shadow-lg shadow-dental-blue/5 border border-dental-blue/10"
+              whileHover={{ scale: 1.04 }}
+              style={{
+                backgroundColor: "#ffffff",
+                borderRadius: "24px",
+                padding: "24px 16px",
+                textAlign: "center",
+                boxShadow: "0 10px 25px -5px rgba(0, 107, 148, 0.04)",
+                border: "1px solid rgba(0, 107, 148, 0.08)"
+              }}
             >
-              <div className="text-4xl mb-3">{stat.icon}</div>
-              <div className="font-display font-black text-4xl text-dental-blue mb-2">
+              <div style={{ fontSize: "36px", marginBottom: "8px" }}>{stat.icon}</div>
+              <div
+                className="font-black mb-1"
+                style={{ color: "#006B94", fontSize: "32px", letterSpacing: "-0.5px" }}
+              >
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-gray-500 font-body text-sm">{stat.label}</div>
+              <div className="text-gray-400 font-medium text-xs md:text-sm uppercase tracking-wider">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

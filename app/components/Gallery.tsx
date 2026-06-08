@@ -14,31 +14,50 @@ const galleryItems = [
 export default function Gallery() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState(null);
 
   return (
-    <section id="gallery" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <section 
+      id="gallery" 
+      ref={sectionRef} 
+      style={{ 
+        padding: "80px 0", 
+        position: "relative", 
+        overflow: "hidden", 
+        backgroundColor: "#ffffff" 
+      }}
+    >
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        
+        {/* Header Section with minimized bottom gap */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <span className="inline-block bg-dental-gold/20 text-dental-gold font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full mb-4">
+          <span 
+            className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-3"
+            style={{ backgroundColor: "rgba(212, 168, 67, 0.15)", color: "#D4A843" }}
+          >
             Before & After
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-4">
+          <h2 
+            className="font-black text-gray-900 mb-3"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.2" }}
+          >
             Smile <span className="gradient-text">Transformations</span>
           </h2>
-          <p className="text-gray-500 font-body text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-base md:text-lg mx-auto">
             Real results from real patients — witness the stunning transformations
-            our clinic delivers every day.
+            our <br />clinic delivers every day.
           </p>
         </motion.div>
 
-        {/* Gallery grid */}
-        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
+        {/* Gallery Grid Block */}
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          style={{ marginBottom: "48px", boxSizing: "border-box" }}
+        >
           {galleryItems.map((item, i) => (
             <motion.div
               key={i}
@@ -46,48 +65,98 @@ export default function Gallery() {
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              onClick={() => setActive(i)}
-              className="relative rounded-3xl overflow-hidden cursor-pointer group h-full flex flex-col"
+              // onClick={() => setActive(i)}
+              className="group"
               style={{
-                aspectRatio: i === 0 || i === 5 ? "1/1.3" : "1/1",
-                background: `linear-gradient(135deg, ${item.color}22, ${item.color}44)`,
-                border: `2px solid ${item.color}20`,
+                position: "relative",
+                borderRadius: "24px",
+                overflow: "hidden",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                aspectRatio: "1/1",
+                background: `linear-gradient(135deg, ${item.color}15, ${item.color}33)`,
+                border: `1px solid ${item.color}25`,
+                boxSizing: "border-box"
               }}
             >
-              {/* Visual */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
-                <div className="text-7xl group-hover:scale-125 transition-transform duration-500">
+              {/* Inner Base Visual Component Layer */}
+              <div 
+                style={{ 
+                  position: "absolute", 
+                  inset: 0, 
+                  display: "flex", 
+                  flexDirection: "column", 
+                  // itemsCenter: "center", 
+                  justifyContent: "center", 
+                  padding: "28px", 
+                  boxSizing: "border-box",
+                  textAlign: "center"
+                }}
+              >
+                <div 
+                  style={{ fontSize: "64px", marginBottom: "16px", transition: "transform 500ms" }}
+                  className="group-hover:scale-110"
+                >
                   {item.emoji}
                 </div>
-                <div className="text-center">
-                  <div className="font-display font-bold text-gray-900 text-lg">{item.label}</div>
-                  <div className="text-gray-500 font-body text-sm">{item.desc}</div>
+                <div style={{ width: "100%" }}>
+                  <div className="font-bold text-gray-900 text-base md:text-lg mb-1">{item.label}</div>
+                  <div className="text-gray-500 text-sm">{item.desc}</div>
                 </div>
               </div>
 
-              {/* Hover overlay */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                style={{ background: `${item.color}CC` }}>
-                <div className="text-center">
-                  <div className="text-5xl mb-3">{item.emoji}</div>
-                  <div className="text-white font-display font-bold text-xl">{item.label}</div>
-                  <div className="text-white/80 font-body text-sm mt-1">{item.desc}</div>
-                  <div className="mt-4 px-4 py-2 border border-white/40 rounded-full text-white text-xs font-body">
+              {/* Seamless Cover Hover Overlay Layer */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ 
+                  background: `${item.color}E6`, 
+                  display: "flex", 
+                  alignItems: "center", 
+                  justifyContent: "center", 
+                  padding: "28px", 
+                  boxSizing: "border-box" 
+                }}
+              >
+                <div style={{ textAlign: "center", color: "#ffffff", width: "100%" }}>
+                  <div style={{ fontSize: "44px", marginBottom: "12px" }}>{item.emoji}</div>
+                  <div className="font-bold text-lg md:text-xl mb-1">{item.label}</div>
+                  <div style={{ color: "rgba(255, 255, 255, 0.85)", fontSize: "14px", marginBottom: "16px" }}>{item.desc}</div>
+                  <div 
+                    className="inline-block rounded-full"
+                    style={{ 
+                      padding: "8px 18px", 
+                      border: "1px solid rgba(255, 255, 255, 0.4)", 
+                      fontSize: "12px", 
+                      fontWeight: "500" 
+                    }}
+                  >
                     View Details
                   </div>
                 </div>
               </div>
 
-              {/* Corner label */}
-              <div className="absolute top-3 left-3 px-3 py-1 rounded-full font-body font-semibold text-xs text-white"
-                style={{ background: item.color }}>
+              {/* Corner Accent Badge */}
+              <div 
+                style={{ 
+                  position: "absolute", 
+                  top: "14px", 
+                  left: "14px", 
+                  padding: "4px 12px", 
+                  borderRadius: "20px", 
+                  fontSize: "11px", 
+                  fontWeight: "600", 
+                  color: "#ffffff", 
+                  background: item.color 
+                }}
+              >
                 {item.label}
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Lightbox */}
+        {/* Modal Lightbox Popup Frame */}
         <AnimatePresence>
           {active !== null && (
             <motion.div
@@ -95,32 +164,76 @@ export default function Gallery() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActive(null)}
-              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 999,
+                backgroundColor: "rgba(0, 0, 0, 0.75)",
+                backdropFilter: "blur(4px)",
+                WebkitBackdropFilter: "blur(4px)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "24px",
+                boxSizing: "border-box"
+              }}
             >
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white rounded-3xl p-10 max-w-md w-full text-center shadow-2xl"
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "24px",
+                  padding: "40px 24px",
+                  maxWidth: "440px",
+                  width: "100%",
+                  textAlign: "center",
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                  boxSizing: "border-box"
+                }}
               >
-                <div className="text-9xl mb-6">{galleryItems[active].emoji}</div>
-                <h3 className="font-display font-black text-3xl text-gray-900 mb-3">
+                <div style={{ fontSize: "96px", marginBottom: "20px" }}>{galleryItems[active].emoji}</div>
+                <h3 className="font-black text-2xl md:text-3xl text-gray-900 mb-2">
                   {galleryItems[active].label}
                 </h3>
-                <p className="text-gray-500 font-body mb-2">{galleryItems[active].desc}</p>
-                <p className="text-gray-400 font-body text-sm mb-8">
+                <p className="text-gray-500 mb-1" style={{ fontSize: "15px" }}>{galleryItems[active].desc}</p>
+                <p className="text-gray-400 text-xs md:text-sm mb-6">
                   Delivered by DR AK Dental & Aesthetic Clinic with precision and care.
                 </p>
-                <div className="flex gap-3">
-                  <a href="#appointment"
+                
+                <div style={{ display: "flex", gap: "12px" }}>
+                  <a 
+                    href="#appointment"
                     onClick={() => setActive(null)}
-                    className="flex-1 btn-primary py-3 rounded-xl font-display font-semibold text-sm">
+                    style={{
+                      flex: 1,
+                      backgroundColor: "#006B94",
+                      color: "#ffffff",
+                      padding: "12px 16px",
+                      borderRadius: "12px",
+                      fontWeight: "600",
+                      fontSize: "14px",
+                      textDecoration: "none",
+                      display: "inline-block"
+                    }}
+                  >
                     Book This Treatment
                   </a>
                   <button
                     onClick={() => setActive(null)}
-                    className="px-5 py-3 rounded-xl border-2 border-gray-200 font-body text-gray-500 hover:bg-gray-50 transition-colors text-sm">
+                    style={{
+                      padding: "12px 20px",
+                      borderRadius: "12px",
+                      border: "2px solid #e5e7eb",
+                      color: "#6b7280",
+                      backgroundColor: "transparent",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                      cursor: "pointer"
+                    }}
+                  >
                     Close
                   </button>
                 </div>
@@ -129,21 +242,28 @@ export default function Gallery() {
           )}
         </AnimatePresence>
 
-        {/* CTA */}
+        {/* Bottom Call-To-Action Element */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6 }}
-          className="text-center mt-12"
+          style={{ textAlign: "center" }}
         >
-          <p className="text-gray-500 font-body mb-4">
+          <p className="text-gray-500 text-sm md:text-base mb-4">
             Want to see more? Follow our Instagram for real patient transformations.
           </p>
           <a
             href="https://www.instagram.com/drakdental_clinic/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-display font-semibold px-8 py-3 rounded-xl hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 text-white font-semibold shadow-sm hover:opacity-90 transition-opacity"
+            style={{ 
+              background: "linear-gradient(to right, #a855f7, #ec4899)",
+              padding: "12px 28px",
+              borderRadius: "14px",
+              fontSize: "15px",
+              textDecoration: "none"
+            }}
           >
             📸 @drakdental_clinic
           </a>

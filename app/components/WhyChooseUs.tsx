@@ -46,37 +46,60 @@ export default function WhyChooseUs() {
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="why-us" ref={sectionRef} className="py-20 md:py-28 lg:py-32 relative overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #002D40 0%, #004D6B 50%, #006B94 100%)" }}>
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5"
+    <section 
+      id="why-us" 
+      ref={sectionRef} 
+      style={{ 
+        padding: "80px 0",
+        position: "relative", 
+        overflow: "hidden",
+        background: "linear-gradient(135deg, #002D40 0%, #004D6B 50%, #006B94 100%)" 
+      }}
+    >
+      {/* Background structural background dot grid pattern */}
+      <div 
         style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.05,
+          pointerEvents: "none",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
           backgroundSize: "40px 40px"
-        }} />
+        }} 
+      />
 
-      <div className="relative max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          style={{ textAlign: "center", marginBottom: "48px" }}
         >
-          <span className="inline-block bg-white/10 text-white/80 font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full mb-4">
+          <span 
+            className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-3"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.1)", color: "rgba(255, 255, 255, 0.9)" }}
+          >
             Why Choose Us
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4">
+          <h2 
+            className="font-black text-white mb-3"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.2" }}
+          >
             The DR AK Difference
           </h2>
-          <p className="text-white/60 font-body text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-base md:text-lg mx-auto">
             We're committed to delivering exceptional dental care with state-of-the-art
-            technology and a patient-first approach.
+            <br />technology and a patient-first approach.
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr">
+        {/* Reason Card Matrix Grid */}
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          style={{ marginBottom: "48px", boxSizing: "border-box" }}
+        >
           {reasons.map((reason, i) => (
             <motion.div
               key={i}
@@ -84,42 +107,82 @@ export default function WhyChooseUs() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className="group glass rounded-3xl p-8 cursor-pointer transition-all duration-300 hover:bg-white/15 h-full flex flex-col"
+              className="group"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.06)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                borderRadius: "24px",
+                padding: "28px",
+                cursor: "pointer",
+                transition: "background-color 300ms",
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                boxSizing: "border-box"
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.12)"}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.06)"}
             >
-              <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
+              <div 
+                style={{ fontSize: "40px", marginBottom: "16px", transition: "transform 300ms" }}
+                className="group-hover:scale-110"
+              >
                 {reason.icon}
               </div>
-              <h3 className="font-display font-bold text-white text-xl mb-3">
+              <h3 className="font-bold text-white text-lg mb-2">
                 {reason.title}
               </h3>
-              <p className="text-white/60 font-body text-sm leading-relaxed flex-grow">
+              <p className="text-white/70 text-sm leading-relaxed" style={{ flexGrow: 1, margin: 0 }}>
                 {reason.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Contact strip */}
+        {/* Interactive Contact Banner Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          style={{ margin: "0 24px" }}
-          className="mt-16 glass rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6"
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.06)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+            borderRadius: "24px",
+            padding: "32px",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            boxSizing: "border-box"
+          }}
         >
-          <div>
-            <h3 className="font-display font-bold text-white text-2xl mb-2">
+          <div style={{ flex: "1" }}>
+            <h3 className="font-bold text-white text-xl md:text-2xl mb-2">
               Ready to Transform Your Smile?
             </h3>
-            <p className="text-white/60 font-body">
+            <p className="text-white/70 text-sm md:text-base mb-0" style={{ margin: 0 }}>
               📍 Shop no. G-2, Al Mussawir Tower, Block 12, Gulistan-e-Johar, Karachi
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
+          
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", alignSelf: "stretch", alignItems: "center" }}>
             <motion.a
               href="tel:03178488790"
               whileHover={{ scale: 1.05 }}
-              className="btn-primary px-6 py-3 rounded-xl font-display font-bold text-sm flex items-center gap-2"
+              whileTap={{ scale: 0.95 }}
+              style={{
+                backgroundColor: "#CC2936",
+                color: "#ffffff",
+                padding: "14px 24px",
+                borderRadius: "14px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                textDecoration: "none"
+              }}
             >
               📞 Call Now
             </motion.a>
@@ -128,7 +191,20 @@ export default function WhyChooseUs() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
-              className="btn-outline px-6 py-3 rounded-xl font-display font-bold text-sm flex items-center gap-2"
+              whileTap={{ scale: 0.95 }}
+              style={{
+                backgroundColor: "transparent",
+                color: "#ffffff",
+                padding: "14px 24px",
+                borderRadius: "14px",
+                fontSize: "14px",
+                fontWeight: "bold",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                border: "1px solid rgba(255, 255, 255, 0.4)",
+                textDecoration: "none"
+              }}
             >
               💬 WhatsApp
             </motion.a>

@@ -35,74 +35,161 @@ export default function Appointment() {
     setSubmitted(true);
   };
 
-  return (
-    <section id="appointment" ref={sectionRef} className="py-20 md:py-28 lg:py-32 bg-white relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{ background: "radial-gradient(circle at 70% 50%, #006B94, transparent)" }} />
+  // Common styling configuration for all inputs
+  const inputBaseStyle = {
+    width: "100%",
+    padding: "14px 16px",
+    borderRadius: "12px",
+    border: "1px solid #e5e7eb",
+    backgroundColor: "#f9fafb",
+    color: "#111827",
+    fontSize: "15px",
+    outline: "none",
+    boxSizing: "border-box" as const,
+    transition: "all 200ms"
+  };
 
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        <div style={{ margin: "0 24px" }} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left info */}
+  return (
+    <section
+      id="appointment"
+      ref={sectionRef}
+      style={{
+        padding: "80px 0",
+        backgroundColor: "#ffffff",
+        position: "relative",
+        overflow: "hidden"
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.03,
+          pointerEvents: "none",
+          background: "radial-gradient(circle at 70% 50%, #006B94, transparent)"
+        }}
+      />
+
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start" style={{ boxSizing: "border-box" }}>
+
+          {/* Left Block - Informational Panel */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-dental-red/10 text-dental-red font-body font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            <span
+              className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
+              style={{ backgroundColor: "rgba(204, 41, 54, 0.1)", color: "#CC2936" }}
+            >
               Book Appointment
             </span>
-            <h2 className="font-display font-black text-4xl md:text-5xl text-gray-900 mb-6">
+            <h2
+              className="font-black text-gray-900 mb-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: "1.2" }}
+            >
               Start Your Smile
               <br />
               <span className="gradient-text">Journey Today</span>
             </h2>
-            <p className="text-gray-500 font-body text-lg leading-relaxed mb-10">
+            <p className="text-gray-500 text-base md:text-lg mb-8" style={{ lineHeight: "1.6" }}>
               Schedule your appointment with DR AK Dental & Aesthetic Clinic.
               Our team will confirm your booking within a few hours.
             </p>
 
-            {/* Contact options */}
-            <div className="space-y-4 mb-10">
+            {/* Visual Action Link Cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
               {[
                 { icon: "📞", label: "Phone", value: "0317-8488790", href: "tel:03178488790" },
                 { icon: "💬", label: "WhatsApp", value: "Chat with us", href: "https://wa.me/923178488790" },
                 { icon: "📘", label: "Facebook", value: "DR AK Dental", href: "https://www.facebook.com/61564450523227" },
                 { icon: "📸", label: "Instagram", value: "@drakdental_clinic", href: "https://www.instagram.com/drakdental_clinic/" },
               ].map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-dental-blue/30 hover:bg-dental-blue/5 transition-all group">
-                  <div className="w-12 h-12 rounded-xl bg-dental-blue/10 flex items-center justify-center text-2xl group-hover:bg-dental-blue/20 transition-colors">
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "16px",
+                    padding: "16px",
+                    borderRadius: "16px",
+                    border: "1px solid #f3f4f6",
+                    textDecoration: "none",
+                    backgroundColor: "#ffffff",
+                    boxSizing: "border-box",
+                    transition: "all 200ms"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(0, 107, 148, 0.3)";
+                    e.currentTarget.style.backgroundColor = "rgba(0, 107, 148, 0.03)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "#f3f4f6";
+                    e.currentTarget.style.backgroundColor = "#ffffff";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "12px",
+                      backgroundColor: "rgba(0, 107, 148, 0.08)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "22px",
+                      transition: "background-color 200ms"
+                    }}
+                  >
                     {item.icon}
                   </div>
                   <div>
-                    <div className="text-gray-400 font-body text-xs uppercase tracking-wide">{item.label}</div>
-                    <div className="text-gray-900 font-display font-semibold">{item.value}</div>
+                    <div style={{ color: "#9ca3af", fontSize: "11px", fontWeight: "600", textTransform: "uppercase", marginBottom: "2px" }}>{item.label}</div>
+                    <div style={{ color: "#111827", fontWeight: "700", fontSize: "15px" }}>{item.value}</div>
                   </div>
-                  <div className="ml-auto text-dental-blue opacity-0 group-hover:opacity-100 transition-opacity">→</div>
+                  <div
+                    className="group-hover:opacity-100"
+                    style={{ marginLeft: "auto", color: "#006B94", opacity: 0, fontWeight: "bold", transition: "opacity 200ms" }}
+                  >
+                    →
+                  </div>
                 </a>
               ))}
             </div>
 
-            {/* Hours */}
-            <div className="bg-dental-blue/5 rounded-2xl p-6 border border-dental-blue/10">
-              <h4 className="font-display font-bold text-gray-900 mb-4 flex items-center gap-2">
+            {/* Operational Clinic Hours Block */}
+            <div
+              style={{
+                backgroundColor: "rgba(0, 107, 148, 0.04)",
+                borderRadius: "16px",
+                padding: "24px",
+                border: "1px solid rgba(0, 107, 148, 0.08)",
+                boxSizing: "border-box"
+              }}
+            >
+              <h4 className="font-bold text-gray-900 mb-3" style={{ display: "flex", alignItems: "center", gap: "8px", margin: "0 0 12px 0", fontSize: "16px" }}>
                 🕐 Working Hours
               </h4>
-              <div className="space-y-2">
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
                   { day: "Monday – Saturday", hours: "10:00 AM – 9:00 PM" },
                   { day: "Sunday", hours: "By Appointment" },
                 ].map((item) => (
-                  <div key={item.day} className="flex justify-between items-center">
-                    <span className="text-gray-600 font-body text-sm">{item.day}</span>
-                    <span className="text-dental-blue font-semibold font-body text-sm">{item.hours}</span>
+                  <div key={item.day} style={{ display: "flex", justifyContent: "between", alignItems: "center", width: "100%" }}>
+                    <span style={{ color: "#4b5563", fontSize: "14px", flexGrow: 1 }}>{item.day}</span>
+                    <span style={{ color: "#006B94", fontWeight: "600", fontSize: "14px" }}>{item.hours}</span>
                   </div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right - Form */}
+          {/* Right Block - Booking Form Sheet Container */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -112,131 +199,169 @@ export default function Appointment() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white rounded-3xl p-12 shadow-2xl shadow-dental-blue/10 border border-dental-blue/10 text-center"
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "24px",
+                  padding: "48px 24px",
+                  boxShadow: "0 25px 50px -12px rgba(0, 107, 148, 0.08)",
+                  border: "1px solid rgba(0, 107, 148, 0.08)",
+                  textAlign: "center",
+                  boxSizing: "border-box"
+                }}
               >
-                <div className="text-8xl mb-6">✅</div>
-                <h3 className="font-display font-bold text-2xl text-gray-900 mb-4">
+                <div style={{ fontSize: "72px", marginBottom: "20px" }}>✅</div>
+                <h3 className="font-bold text-2xl text-gray-900 mb-3">
                   Appointment Requested!
                 </h3>
-                <p className="text-gray-500 font-body mb-8">
+                <p className="text-gray-500 mb-8 mx-auto" style={{ maxWidth: "340px", fontSize: "15px" }}>
                   Thank you, {form.name}! We'll confirm your appointment via WhatsApp or call within a few hours.
                 </p>
                 <button
                   onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", service: "", date: "", message: "" }); }}
-                  className="btn-primary px-8 py-3 rounded-xl font-display font-semibold transition-all"
+                  style={{
+                    backgroundColor: "#006B94",
+                    color: "#ffffff",
+                    padding: "12px 28px",
+                    borderRadius: "12px",
+                    fontWeight: "600",
+                    border: "none",
+                    cursor: "pointer"
+                  }}
                 >
                   🗓 Book Another
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit}
-                className="bg-white rounded-3xl p-8 shadow-2xl shadow-dental-blue/10 border border-dental-blue/10 space-y-5">
-                <h3 className="font-display font-bold text-2xl text-gray-900 mb-2">
-                  Book Your Appointment
-                </h3>
-                <p className="text-gray-400 font-body text-sm mb-6">
-                  Fill in the form and we'll be in touch shortly.
-                </p>
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  backgroundColor: "#ffffff",
+                  borderRadius: "24px",
+                  padding: "32px",
+                  boxShadow: "0 25px 50px -12px rgba(0, 107, 148, 0.08)",
+                  border: "1px solid rgba(0, 107, 148, 0.08)",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "20px",
+                  boxSizing: "border-box"
+                }}
+              >
+                <div>
+                  <h3 className="font-bold text-xl md:text-2xl text-gray-900 mb-1">
+                    Book Your Appointment
+                  </h3>
+                  <p className="text-gray-400 text-xs md:text-sm" style={{ margin: 0 }}>
+                    Fill in the form and we'll be in touch shortly.
+                  </p>
+                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                  <div className="form-group">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Full Name *</span>
                     <input
                       type="text"
                       name="name"
-                      id="name"
-                      placeholder=" "
                       required
                       value={form.name}
                       onChange={handleChange}
-                      className="form-input"
+                      style={inputBaseStyle}
+                      placeholder="e.g. Ali Khan"
                     />
-                    <label htmlFor="name" className="form-label">Full Name *</label>
                   </div>
-                  <div className="form-group">
+                  <div>
+                    <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Phone Number *</span>
                     <input
                       type="tel"
                       name="phone"
-                      id="phone"
-                      placeholder=" "
                       required
                       value={form.phone}
                       onChange={handleChange}
-                      className="form-input"
+                      style={inputBaseStyle}
+                      placeholder="e.g. 03001234567"
                     />
-                    <label htmlFor="phone" className="form-label">Phone Number *</label>
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div>
+                  <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Email Address</span>
                   <input
                     type="email"
                     name="email"
-                    id="email"
-                    placeholder=" "
                     value={form.email}
                     onChange={handleChange}
-                    className="form-input"
+                    style={inputBaseStyle}
+                    placeholder="name@example.com"
                   />
-                  <label htmlFor="email" className="form-label">Email Address</label>
                 </div>
 
-                <div className="form-group">
-                  <select
-                    name="service"
-                    id="service"
-                    required
-                    value={form.service}
-                    onChange={handleChange}
-                    className="form-input appearance-none"
-                  >
-                    <option value="" disabled>Select a service</option>
-                    {services.map(s => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                  <label htmlFor="service" className="form-label">
-                    Treatment Required *
-                  </label>
+                <div>
+                  <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Treatment Required *</span>
+                  <div style={{ position: "relative" }}>
+                    <select
+                      name="service"
+                      required
+                      value={form.service}
+                      onChange={handleChange}
+                      style={{ ...inputBaseStyle, paddingRight: "40px" }}
+                    >
+                      <option value="" disabled>Select a treatment service</option>
+                      {services.map(s => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                    <div style={{ position: "absolute", top: "50%", right: "16px", transform: "translateY(-50%)", pointerEvents: "none", color: "#6b7280", fontSize: "12px" }}>▼</div>
+                  </div>
                 </div>
 
-                <div className="form-group">
+                <div>
+                  <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Preferred Appointment Date</span>
                   <input
                     type="date"
                     name="date"
-                    id="date"
                     value={form.date}
                     onChange={handleChange}
-                    className="form-input"
+                    style={inputBaseStyle}
                     min={new Date().toISOString().split("T")[0]}
                   />
-                  <label htmlFor="date" className="form-label">
-                    Preferred Date
-                  </label>
                 </div>
 
-                <div className="form-group">
+                <div>
+                  <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Additional Notes</span>
                   <textarea
                     name="message"
-                    id="message"
                     rows={3}
-                    placeholder=" "
                     value={form.message}
                     onChange={handleChange}
-                    className="form-input resize-none"
+                    style={{ ...inputBaseStyle, resize: "none" }}
+                    placeholder="Describe your request or medical history notes here..."
                   />
-                  <label htmlFor="message" className="form-label">Additional Notes</label>
                 </div>
 
                 <motion.button
                   type="submit"
                   disabled={loading}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full btn-primary py-4 rounded-2xl font-display font-bold text-lg flex items-center justify-center gap-3 transition-all"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  style={{
+                    width: "100%",
+                    backgroundColor: "#006B94",
+                    color: "#ffffff",
+                    padding: "14px",
+                    borderRadius: "14px",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    border: "none",
+                    cursor: loading ? "not-allowed" : "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    boxSizing: "border-box"
+                  }}
                 >
                   {loading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      <div style={{ width: "18px", height: "18px", border: "2px solid rgba(255,255,255,0.3)", borderTopColor: "#ffffff", borderRadius: "50%" }} className="animate-spin" />
                       <span>Booking...</span>
                     </>
                   ) : (
@@ -247,8 +372,8 @@ export default function Appointment() {
                   )}
                 </motion.button>
 
-                <p className="text-center text-gray-400 font-body text-xs">
-                  Or call us directly: <a href="tel:03178488790" className="text-dental-blue font-semibold">0317-8488790</a>
+                <p style={{ textAlign: "center", color: "#9ca3af", fontSize: "12px", margin: 0 }}>
+                  Or call us directly: <a href="tel:03178488790" style={{ color: "#006B94", fontWeight: "600", textDecoration: "none" }}>0317-8488790</a>
                 </p>
               </form>
             )}
