@@ -28,82 +28,147 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 nav-blur ${
-          scrolled
-            ? "bg-white/90 shadow-lg shadow-dental-blue/10"
-            : "bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-50"
+        style={{
+          boxSizing: "border-box",
+          transition: "background-color 400ms ease, border-color 400ms ease, box-shadow 400ms ease",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.92)" : "transparent",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(0, 107, 148, 0.1)" : "1px solid transparent",
+          boxShadow: scrolled ? "0 10px 30px -10px rgba(0, 26, 39, 0.15)" : "none"
+        }}
       >
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <div style={{ margin: "0 24px" }} className="flex items-center justify-between h-20 px-2">
-            {/* Logo */}
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", boxSizing: "border-box" }}>
+          <div className="flex items-center justify-between h-20" style={{ boxSizing: "border-box" }}>
+            
+            {/* Brand Logo Layout Block */}
             <motion.a
               href="#home"
               className="flex items-center gap-3 group"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.01 }}
+              style={{ textDecoration: "none" }}
             >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                scrolled ? "bg-dental-blue" : "bg-white/20 border border-white/40"
-              }`}>
-                <span className={`text-xl font-black ${scrolled ? "text-white" : "text-white"}`}>⚕</span>
+              <div 
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "background-color 300ms, border-color 300ms",
+                  backgroundColor: scrolled ? "#006B94" : "rgba(255, 255, 255, 0.15)",
+                  border: scrolled ? "1px solid transparent" : "1px solid rgba(255, 255, 255, 0.3)"
+                }}
+              >
+                <span style={{ fontSize: "20px", fontWeight: "900", color: "#ffffff" }}>⚕</span>
               </div>
               <div>
-                <div className={`font-display font-bold text-lg leading-none transition-colors duration-300 ${
-                  scrolled ? "text-dental-blue-dark" : "text-white"
-                }`}>
+                <div 
+                  style={{ 
+                    fontWeight: "700", 
+                    fontSize: "18px", 
+                    lineHeight: "1", 
+                    transition: "color 300ms",
+                    color: scrolled ? "#001A27" : "#ffffff" 
+                  }}
+                >
                   DR AK
                 </div>
-                <div className={`font-body text-[10px] uppercase tracking-widest transition-colors duration-300 ${
-                  scrolled ? "text-dental-blue/70" : "text-white/70"
-                }`}>
+                <div 
+                  style={{ 
+                    fontSize: "10px", 
+                    fontWeight: "600", 
+                    letterSpacing: "0.15em", 
+                    textTransform: "uppercase", 
+                    transition: "color 300ms",
+                    color: scrolled ? "rgba(0, 107, 148, 0.75)" : "rgba(255, 255, 255, 0.7)" 
+                  }}
+                >
                   Dental & Aesthetic
                 </div>
               </div>
             </motion.a>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center gap-8" style={{ boxSizing: "border-box" }}>
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className={`nav-link font-body font-medium text-sm transition-colors duration-300 ${
-                    scrolled ? "text-gray-700 hover:text-dental-blue" : "text-white/90 hover:text-white"
-                  }`}
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    textDecoration: "none",
+                    transition: "color 300ms",
+                    color: scrolled ? "#4A5568" : "rgba(255, 255, 255, 0.9)"
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = scrolled ? "#006B94" : "#ffffff"}
+                  onMouseLeave={(e) => e.currentTarget.style.color = scrolled ? "#4A5568" : "rgba(255, 255, 255, 0.9)"}
                 >
                   {link.label}
                 </a>
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            {/* Desktop Action Interface */}
+            <div className="hidden md:flex items-center gap-6" style={{ boxSizing: "border-box" }}>
               <a
                 href="tel:03178488790"
-                className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${
-                  scrolled ? "text-dental-blue" : "text-white/90"
-                }`}
+                className="flex items-center gap-2"
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  textDecoration: "none",
+                  transition: "color 300ms",
+                  color: scrolled ? "#006B94" : "rgba(255, 255, 255, 0.9)"
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = scrolled ? "#002D40" : "#ffffff"}
+                onMouseLeave={(e) => e.currentTarget.style.color = scrolled ? "#006B94" : "rgba(255, 255, 255, 0.9)"}
               >
-                <Phone size={16} />
+                <Phone size={15} />
                 <span>0317-8488790</span>
               </a>
               <motion.a
                 href="#appointment"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary px-6 py-2 rounded-2xl font-display font-bold text-sm flex items-center justify-center gap-2 transition-all whitespace-nowrap"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  // backgroundColor: "#006B94",
+                  color: "#ffffff",
+                  padding: "10px 20px",
+                  borderRadius: "14px",
+                  fontWeight: "700",
+                  fontSize: "13px",
+                  textDecoration: "none",
+                  boxShadow: scrolled ? "0 4px 12px rgba(0, 107, 148, 0.2)" : "none",
+                  whiteSpace: "nowrap"
+                }}
+                className="btn-primary"
               >
                 <span>🗓</span>
                 <span>Book Appointment</span>
               </motion.a>
             </div>
 
-            {/* Mobile Menu Toggle */}
+            {/* Responsive Mobile Layout Interface Toggle */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`md:hidden p-2 rounded-lg transition-colors ${
-                scrolled ? "text-dental-blue" : "text-white"
-              }`}
+              className="md:hidden"
+              style={{
+                background: "none",
+                border: "none",
+                padding: "8px",
+                cursor: "pointer",
+                borderRadius: "8px",
+                transition: "color 300ms",
+                color: scrolled ? "#006B94" : "#ffffff"
+              }}
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -111,41 +176,88 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Expanded Mobile View Interface */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-[72px] left-0 right-0 z-40 bg-white/95 nav-blur shadow-xl shadow-dental-blue/10 border-t border-dental-blue/10"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="fixed left-0 right-0 z-40"
+            style={{
+              top: "80px",
+              boxSizing: "border-box",
+              backgroundColor: "rgba(255, 255, 255, 0.96)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              borderBottom: "1px solid rgba(0, 107, 148, 0.1)",
+              boxShadow: "0 20px 40px rgba(0, 26, 39, 0.15)"
+            }}
           >
-            <div className="max-w-full mx-auto px-4 py-6 flex flex-col gap-4">
+            <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "8px", boxSizing: "border-box" }}>
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07 }}
+                  transition={{ delay: i * 0.04 }}
                   onClick={() => setMobileOpen(false)}
-                  className="text-gray-700 font-medium font-body py-2 border-b border-gray-100 hover:text-dental-blue transition-colors"
+                  style={{
+                    color: "#2D3748",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    padding: "12px 0",
+                    textDecoration: "none",
+                    borderBottom: "1px solid #EDF2F7",
+                    display: "block",
+                    boxSizing: "border-box"
+                  }}
                 >
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a
-                href="#appointment"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                onClick={() => setMobileOpen(false)}
-                className="btn-primary px-6 py-3 rounded-2xl font-display font-bold flex items-center justify-center gap-2 transition-all mt-2"
-              >
               
-                <span>Book Appointment</span>
-              </motion.a>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginTop: "16px", boxSizing: "border-box" }}>
+                <a
+                  href="tel:03178488790"
+                  className="flex items-center justify-center gap-2"
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "700",
+                    textDecoration: "none",
+                    color: "#006B94",
+                    padding: "12px 0"
+                  }}
+                >
+                  <Phone size={16} />
+                  <span>0317-8488790</span>
+                </a>
+
+                <motion.a
+                  href="#appointment"
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    backgroundColor: "#006B94",
+                    color: "#ffffff",
+                    padding: "14px",
+                    borderRadius: "16px",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    textAlign: "center",
+                    boxSizing: "border-box"
+                  }}
+                >
+                  <span>🗓</span>
+                  <span>Book Appointment</span>
+                </motion.a>
+              </div>
             </div>
           </motion.div>
         )}
