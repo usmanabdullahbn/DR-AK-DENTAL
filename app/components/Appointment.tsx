@@ -61,12 +61,43 @@ export default function Appointment() {
       }}
     >
       <div
+        className="animate-blob"
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.03,
+          opacity: 0.04,
           pointerEvents: "none",
           background: "radial-gradient(circle at 70% 50%, #006B94, transparent)"
+        }}
+      />
+      <motion.div
+        animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute",
+          top: "20%",
+          left: "5%",
+          width: "150px",
+          height: "150px",
+          borderRadius: "50%",
+          background: "rgba(204, 41, 54, 0.05)",
+          filter: "blur(20px)",
+          pointerEvents: "none"
+        }}
+      />
+      <motion.div
+        animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          position: "absolute",
+          bottom: "10%",
+          right: "5%",
+          width: "200px",
+          height: "200px",
+          borderRadius: "50%",
+          background: "rgba(0, 161, 154, 0.06)",
+          filter: "blur(20px)",
+          pointerEvents: "none"
         }}
       />
 
@@ -79,12 +110,16 @@ export default function Appointment() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ scale: 1.05 }}
               className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-4"
               style={{ backgroundColor: "rgba(204, 41, 54, 0.1)", color: "#CC2936" }}
             >
               Book Appointment
-            </span>
+            </motion.span>
             <h2
               className="font-black text-gray-900 mb-4"
               style={{ fontSize: "clamp(2rem, 4vw, 3rem)", lineHeight: "1.2" }}
@@ -93,10 +128,16 @@ export default function Appointment() {
               <br />
               <span className="gradient-text">Journey Today</span>
             </h2>
-            <p className="text-gray-500 text-base md:text-lg mb-8" style={{ lineHeight: "1.6" }}>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-gray-500 text-base md:text-lg mb-8"
+              style={{ lineHeight: "1.6" }}
+            >
               Schedule your appointment with DR AK Dental & Aesthetic Clinic.
               Our team will confirm your booking within a few hours.
-            </p>
+            </motion.p>
 
             {/* Visual Action Link Cards */}
             <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
@@ -105,13 +146,17 @@ export default function Appointment() {
                 { icon: "💬", label: "WhatsApp", value: "Chat with us", href: "https://wa.me/923178488790" },
                 { icon: "📘", label: "Facebook", value: "DR AK Dental", href: "https://www.facebook.com/61564450523227" },
                 { icon: "📸", label: "Instagram", value: "@drakdental_clinic", href: "https://www.instagram.com/drakdental_clinic/" },
-              ].map((item) => (
-                <a
+              ].map((item, i) => (
+                <motion.a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
+                  whileHover={{ x: 8, borderColor: "rgba(0, 107, 148, 0.3)" }}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -124,16 +169,9 @@ export default function Appointment() {
                     boxSizing: "border-box",
                     transition: "all 200ms"
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(0, 107, 148, 0.3)";
-                    e.currentTarget.style.backgroundColor = "rgba(0, 107, 148, 0.03)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "#f3f4f6";
-                    e.currentTarget.style.backgroundColor = "#ffffff";
-                  }}
                 >
-                  <div
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 10 }}
                     style={{
                       width: "48px",
                       height: "48px",
@@ -142,28 +180,31 @@ export default function Appointment() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontSize: "22px",
-                      transition: "background-color 200ms"
+                      fontSize: "22px"
                     }}
                   >
                     {item.icon}
-                  </div>
+                  </motion.div>
                   <div>
                     <div style={{ color: "#9ca3af", fontSize: "11px", fontWeight: "600", textTransform: "uppercase", marginBottom: "2px" }}>{item.label}</div>
                     <div style={{ color: "#111827", fontWeight: "700", fontSize: "15px" }}>{item.value}</div>
                   </div>
-                  <div
-                    className="group-hover:opacity-100"
-                    style={{ marginLeft: "auto", color: "#006B94", opacity: 0, fontWeight: "bold", transition: "opacity 200ms" }}
+                  <motion.div
+                    initial={{ x: -10, opacity: 0 }}
+                    whileHover={{ x: 0, opacity: 1 }}
+                    style={{ marginLeft: "auto", color: "#006B94", fontWeight: "bold" }}
                   >
                     →
-                  </div>
-                </a>
+                  </motion.div>
+                </motion.a>
               ))}
             </div>
 
             {/* Operational Clinic Hours Block */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.9 }}
               style={{
                 backgroundColor: "rgba(0, 107, 148, 0.04)",
                 borderRadius: "16px",
@@ -173,20 +214,32 @@ export default function Appointment() {
               }}
             >
               <h4 className="font-bold text-gray-900 mb-3" style={{ display: "flex", alignItems: "center", gap: "8px", margin: "0 0 12px 0", fontSize: "16px" }}>
-                🕐 Working Hours
+                <motion.span
+                  animate={{ rotate: [0, 15, -15, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  🕐
+                </motion.span>
+                Working Hours
               </h4>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
                   { day: "Monday – Saturday", hours: "10:00 AM – 9:00 PM" },
                   { day: "Sunday", hours: "By Appointment" },
-                ].map((item) => (
-                  <div key={item.day} style={{ display: "flex", justifyContent: "between", alignItems: "center", width: "100%" }}>
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.day}
+                    initial={{ opacity: 0, x: -15 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 1.0 + i * 0.1 }}
+                    style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}
+                  >
                     <span style={{ color: "#4b5563", fontSize: "14px", flexGrow: 1 }}>{item.day}</span>
                     <span style={{ color: "#006B94", fontWeight: "600", fontSize: "14px" }}>{item.hours}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Block - Booking Form Sheet Container */}
@@ -209,15 +262,23 @@ export default function Appointment() {
                   boxSizing: "border-box"
                 }}
               >
-                <div style={{ fontSize: "72px", marginBottom: "20px" }}>✅</div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  style={{ fontSize: "72px", marginBottom: "20px", display: "inline-block" }}
+                >
+                  ✅
+                </motion.div>
                 <h3 className="font-bold text-2xl text-gray-900 mb-3">
                   Appointment Requested!
                 </h3>
                 <p className="text-gray-500 mb-8 mx-auto" style={{ maxWidth: "340px", fontSize: "15px" }}>
                   Thank you, {form.name}! We'll confirm your appointment via WhatsApp or call within a few hours.
                 </p>
-                <button
+                <motion.button
                   onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", service: "", date: "", message: "" }); }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   style={{
                     backgroundColor: "#006B94",
                     color: "#ffffff",
@@ -229,7 +290,7 @@ export default function Appointment() {
                   }}
                 >
                   🗓 Book Another
-                </button>
+                </motion.button>
               </motion.div>
             ) : (
               <form
@@ -256,7 +317,11 @@ export default function Appointment() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.4 }}
+                  >
                     <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Full Name *</span>
                     <input
                       type="text"
@@ -266,9 +331,15 @@ export default function Appointment() {
                       onChange={handleChange}
                       style={inputBaseStyle}
                       placeholder="e.g. Ali Khan"
+                      onFocus={(e) => e.currentTarget.style.borderColor = "#006B94"}
+                      onBlur={(e) => e.currentTarget.style.borderColor = "#e5e7eb"}
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.5 }}
+                  >
                     <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Phone Number *</span>
                     <input
                       type="tel"
@@ -278,11 +349,17 @@ export default function Appointment() {
                       onChange={handleChange}
                       style={inputBaseStyle}
                       placeholder="e.g. 03001234567"
+                      onFocus={(e) => e.currentTarget.style.borderColor = "#006B94"}
+                      onBlur={(e) => e.currentTarget.style.borderColor = "#e5e7eb"}
                     />
-                  </div>
+                  </motion.div>
                 </div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.6 }}
+                >
                   <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Email Address</span>
                   <input
                     type="email"
@@ -291,10 +368,16 @@ export default function Appointment() {
                     onChange={handleChange}
                     style={inputBaseStyle}
                     placeholder="name@example.com"
+                    onFocus={(e) => e.currentTarget.style.borderColor = "#006B94"}
+                    onBlur={(e) => e.currentTarget.style.borderColor = "#e5e7eb"}
                   />
-                </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.7 }}
+                >
                   <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Treatment Required *</span>
                   <div style={{ position: "relative" }}>
                     <select
@@ -311,9 +394,13 @@ export default function Appointment() {
                     </select>
                     <div style={{ position: "absolute", top: "50%", right: "16px", transform: "translateY(-50%)", pointerEvents: "none", color: "#6b7280", fontSize: "12px" }}>▼</div>
                   </div>
-                </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.8 }}
+                >
                   <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Preferred Appointment Date</span>
                   <input
                     type="date"
@@ -323,9 +410,13 @@ export default function Appointment() {
                     style={inputBaseStyle}
                     min={new Date().toISOString().split("T")[0]}
                   />
-                </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.9 }}
+                >
                   <span style={{ display: "block", fontSize: "12px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" }}>Additional Notes</span>
                   <textarea
                     name="message"
@@ -335,16 +426,21 @@ export default function Appointment() {
                     style={{ ...inputBaseStyle, resize: "none" }}
                     placeholder="Describe your request or medical history notes here..."
                   />
-                </div>
+                </motion.div>
 
                 <motion.button
                   type="submit"
                   disabled={loading}
-                  whileHover={{ scale: 1.01 }}
-                  whileTap={{ scale: 0.99 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 1.0 }}
+                  whileHover={{ scale: 1.02, boxShadow: "0 15px 30px rgba(0, 107, 148, 0.4)" }}
+                  whileTap={{ scale: 0.98 }}
                   style={{
                     width: "100%",
-                    backgroundColor: "#006B94",
+                    background: "linear-gradient(135deg, #006B94, #00898A)",
+                    backgroundSize: "200% 200%",
+                    animation: "gradient-shift 5s ease infinite",
                     color: "#ffffff",
                     padding: "14px",
                     borderRadius: "14px",
@@ -366,7 +462,12 @@ export default function Appointment() {
                     </>
                   ) : (
                     <>
-                      <span>🗓</span>
+                      <motion.span
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        🗓
+                      </motion.span>
                       <span>Confirm Appointment</span>
                     </>
                   )}

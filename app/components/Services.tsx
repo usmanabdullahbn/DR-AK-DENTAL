@@ -77,18 +77,47 @@ export default function Services() {
       }}
     >
       {/* Background Ambient Gradients */}
-      <div 
+      <div
+        className="animate-blob"
         style={{
           position: "absolute",
           inset: 0,
-          opacity: 0.02,
+          opacity: 0.04,
           pointerEvents: "none",
           backgroundImage: "radial-gradient(circle at 25% 25%, #006B94 0%, transparent 50%), radial-gradient(circle at 75% 75%, #CC2936 0%, transparent 50%)"
-        }} 
+        }}
       />
 
+      {/* Floating decorative dots */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{
+            y: [0, -20, 0],
+            x: [0, 10, 0],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{
+            duration: 6 + i * 0.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.4
+          }}
+          style={{
+            position: "absolute",
+            top: `${10 + i * 10}%`,
+            left: `${5 + i * 12}%`,
+            width: `${8 + (i % 3) * 4}px`,
+            height: `${8 + (i % 3) * 4}px`,
+            borderRadius: "50%",
+            background: i % 2 === 0 ? "#006B94" : "#CC2936",
+            pointerEvents: "none"
+          }}
+        />
+      ))}
+
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
-        
+
         {/* Header Section with defined bottom margin */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -96,26 +125,36 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "64px" }}
         >
-          <span 
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ scale: 1.05 }}
             className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-2 rounded-full mb-4"
             style={{ backgroundColor: "rgba(204, 41, 54, 0.1)", color: "#CC2936" }}
           >
             Our Services
-          </span>
-          <h2 
+          </motion.span>
+          <h2
             className="font-black text-gray-900 mb-4"
             style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.2" }}
           >
             Comprehensive <span className="gradient-text">Dental Treatments</span>
           </h2>
-          <p className="text-gray-500 text-lg mx-auto" style={{marginTop:"12px"}}>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gray-500 text-lg mx-auto"
+            style={{ marginTop: "12px" }}
+          >
             From preventive care to cosmetic transformations — we offer a full range of <br /> dental
             services tailored to your unique needs.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Responsive Services Grid */}
-        <div 
+        <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
           style={{ marginBottom: "56px" }}
         >
@@ -124,14 +163,18 @@ export default function Services() {
               key={i}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -10, scale: 1.02 }}
+              transition={{ duration: 0.5, delay: i * 0.1, type: "spring", stiffness: 80 }}
+              whileHover={{
+                y: -12,
+                scale: 1.03,
+                boxShadow: `0 25px 50px -10px ${service.color}40`
+              }}
               className="group"
               style={{
                 position: "relative",
                 backgroundColor: "#ffffff",
                 borderRadius: "24px",
-                padding: "28px", 
+                padding: "28px",
                 boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)",
                 border: "1px solid #f3f4f6",
                 cursor: "pointer",
@@ -143,7 +186,7 @@ export default function Services() {
               }}
             >
               {/* Gradient border on hover */}
-              <div 
+              <div
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -153,10 +196,10 @@ export default function Services() {
                   zIndex: 1,
                   background: `linear-gradient(135deg, ${service.color}, ${service.color}33)`,
                   pointerEvents: "none"
-                }} 
+                }}
                 className="group-hover:opacity-100"
               />
-              <div 
+              <div
                 style={{
                   position: "absolute",
                   inset: "1px",
@@ -165,54 +208,65 @@ export default function Services() {
                   zIndex: 2,
                   transition: "opacity 300ms",
                   pointerEvents: "none"
-                }} 
+                }}
                 className="group-hover:opacity-95"
               />
 
               {/* Card Content Elements Wrapped securely over hover layers */}
               <div style={{ position: "relative", zIndex: 3, display: "flex", flexDirection: "column", height: "100%", width: "100%" }}>
-                
+
                 {/* Icon Wrapper */}
-                <div 
-                  style={{ 
-                    width: "56px", 
-                    height: "56px", 
-                    borderRadius: "16px", 
-                    display: "flex", 
-                    // itemsCenter: "center", 
-                    justifyContent: "center", 
-                    fontSize: "28px", 
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, 0], scale: 1.15 }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    borderRadius: "16px",
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "28px",
                     marginBottom: "20px",
                     backgroundColor: service.light,
                     alignItems: "center",
-                    transition: "transform 300ms"
                   }}
-                  className="group-hover:scale-110"
                 >
-                  {service.icon}
-                </div>
+                  <motion.span
+                    animate={{ y: [0, -3, 0] }}
+                    transition={{ duration: 2 + (i % 3), repeat: Infinity, delay: i * 0.2 }}
+                    style={{ display: "inline-block" }}
+                  >
+                    {service.icon}
+                  </motion.span>
+                </motion.div>
 
                 {/* Title */}
-                <h3 className="font-bold text-gray-900 text-base mb-3 leading-tight">
+                <h3 className="font-bold text-gray-900 text-base mb-3 leading-tight group-hover:text-gray-900 transition-colors">
                   {service.title}
                 </h3>
-                
+
                 {/* Description - ensuring proper margin separation */}
                 <p className="text-gray-500 text-sm leading-relaxed" style={{ flexGrow: 1, marginBottom: "20px" }}>
                   {service.description}
                 </p>
 
                 {/* Arrow Action Link */}
-                <div 
+                <div
                   className="flex items-center gap-1 text-xs font-semibold transition-all duration-300 group-hover:gap-2"
                   style={{ color: service.color, marginTop: "auto" }}
                 >
-                  Learn more <span>→</span>
+                  Learn more
+                  <motion.span
+                    animate={{ x: [0, 4, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
                 </div>
               </div>
 
               {/* Background structural decoration circle */}
-              <div 
+              <div
                 style={{
                   position: "absolute",
                   bottom: "-24px",
@@ -224,7 +278,7 @@ export default function Services() {
                   transition: "opacity 300ms",
                   background: service.color,
                   zIndex: 2
-                }} 
+                }}
                 className="group-hover:opacity-10"
               />
             </motion.div>
@@ -238,16 +292,33 @@ export default function Services() {
           transition={{ duration: 0.6, delay: 0.8 }}
           style={{ textAlign: "center" }}
         >
-          <p className="text-gray-500 mb-5" style={{ fontSize: "1rem" }}>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="text-gray-500 mb-5"
+            style={{ fontSize: "1rem" }}
+          >
             Not sure which treatment you need? Our expert team will guide you.
-          </p>
+          </motion.p>
           <motion.a
             href="#appointment"
-            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 15px 35px rgba(204, 41, 54, 0.4)"
+            }}
             whileTap={{ scale: 0.95 }}
             className="btn-primary px-8 py-4 rounded-2xl font-display font-bold text-base flex items-center justify-center gap-2"
           >
-            <span>🗓</span>
+            <motion.span
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              🗓
+            </motion.span>
             <span>Schedule a Free Consultation</span>
           </motion.a>
         </motion.div>

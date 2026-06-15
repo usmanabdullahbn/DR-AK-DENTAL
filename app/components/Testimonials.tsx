@@ -62,17 +62,48 @@ export default function Testimonials() {
   const next = () => setIndex((i) => (i + 1) % testimonials.length);
 
   return (
-    <section 
-      id="testimonials" 
-      ref={sectionRef} 
-      style={{ 
-        padding: "80px 0", 
-        backgroundColor: "#f9fafb", 
-        overflow: "hidden" 
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      style={{
+        padding: "80px 0",
+        backgroundColor: "#f9fafb",
+        overflow: "hidden",
+        position: "relative"
       }}
     >
+      {/* Floating decorative shapes */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "5%",
+          width: "120px",
+          height: "120px",
+          borderRadius: "50%",
+          border: "2px dashed rgba(0, 107, 148, 0.1)",
+          pointerEvents: "none"
+        }}
+      />
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        style={{
+          position: "absolute",
+          bottom: "15%",
+          right: "8%",
+          width: "180px",
+          height: "180px",
+          borderRadius: "50%",
+          border: "2px dashed rgba(204, 41, 54, 0.1)",
+          pointerEvents: "none"
+        }}
+      />
+
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
-        
+
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -80,21 +111,30 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           style={{ textAlign: "center", marginBottom: "40px" }}
         >
-          <span 
+          <motion.span
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            whileHover={{ scale: 1.05 }}
             className="inline-block font-semibold text-sm uppercase tracking-widest px-4 py-1.5 rounded-full mb-3"
             style={{ backgroundColor: "rgba(0, 107, 148, 0.1)", color: "#006B94" }}
           >
             Testimonials
-          </span>
-          <h2 
+          </motion.span>
+          <h2
             className="font-black text-gray-900 mb-3"
             style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.2" }}
           >
             What Our <span className="gradient-text">Patients Say</span>
           </h2>
-          <p className="text-gray-500 text-base md:text-lg mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-gray-500 text-base md:text-lg mx-auto"
+          >
             Real stories from real patients who transformed their smiles with<br /> DR AK Dental.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Main Review Slider Frame */}
@@ -108,10 +148,10 @@ export default function Testimonials() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.4 }}
+                initial={{ opacity: 0, y: 30, rotateX: -15 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: -30, rotateX: 15 }}
+                transition={{ duration: 0.5 }}
                 style={{
                   backgroundColor: "#ffffff",
                   borderRadius: "24px",
@@ -120,45 +160,69 @@ export default function Testimonials() {
                   border: "1px solid rgba(0, 107, 148, 0.05)",
                   textAlign: "center",
                   position: "relative",
-                  boxSizing: "border-box"
+                  boxSizing: "border-box",
+                  transformStyle: "preserve-3d"
                 }}
               >
                 {/* Big Quote Accent mark */}
-                <div style={{ fontSize: "64px", color: "rgba(0, 107, 148, 0.1)", fontFamily: "serif", lineHeight: 1, marginBottom: "8px" }}>“</div>
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.6, type: "spring" }}
+                  style={{ fontSize: "64px", color: "rgba(0, 107, 148, 0.1)", fontFamily: "serif", lineHeight: 1, marginBottom: "8px" }}
+                >“</motion.div>
 
                 {/* Patient Review Text Block */}
-                <p 
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
                   className="text-gray-700 font-medium italic mb-6 mx-auto"
                   style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)", lineHeight: "1.6", maxWidth: "750px" }}
                 >
                   {testimonials[index].review}
-                </p>
+                </motion.p>
 
                 {/* Rating Stars Grid */}
                 <div style={{ display: "flex", justifyContent: "center", gap: "4px", marginBottom: "24px" }}>
                   {[...Array(testimonials[index].rating)].map((_, i) => (
-                    <span key={i} style={{ fontSize: "20px" }}>⭐</span>
+                    <motion.span
+                      key={i}
+                      initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                      animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                      transition={{ duration: 0.4, delay: 0.2 + i * 0.1, type: "spring" }}
+                      style={{ fontSize: "20px", display: "inline-block" }}
+                    >
+                      ⭐
+                    </motion.span>
                   ))}
                 </div>
 
                 {/* Patient Profile Card Wrapper */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
-                  <div
-                    style={{ 
-                      width: "56px", 
-                      height: "56px", 
-                      borderRadius: "50%", 
-                      display: "flex", 
-                      alignItems: "center", 
-                      justifyContent: "center", 
-                      fontWeight: "bold", 
-                      color: "#ffffff", 
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontWeight: "bold",
+                      color: "#ffffff",
                       fontSize: "16px",
-                      background: `linear-gradient(135deg, ${testimonials[index].color}, ${testimonials[index].color}99)` 
+                      background: `linear-gradient(135deg, ${testimonials[index].color}, ${testimonials[index].color}99)`,
+                      boxShadow: `0 8px 16px ${testimonials[index].color}40`
                     }}
                   >
                     {testimonials[index].avatar}
-                  </div>
+                  </motion.div>
                   <div style={{ textAlign: "left" }}>
                     <div className="font-bold text-gray-900 text-base md:text-lg" style={{ lineHeight: "1.2", marginBottom: "2px" }}>
                       {testimonials[index].name}
@@ -167,28 +231,32 @@ export default function Testimonials() {
                       {testimonials[index].role}
                     </div>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Corner Decorative Visual Dot */}
-                <div 
-                  style={{ 
-                    position: "absolute", 
-                    top: "24px", 
-                    right: "24px", 
-                    width: "48px", 
-                    height: "48px", 
-                    borderRadius: "50%", 
+                <motion.div
+                  animate={{ scale: [1, 1.15, 1] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  style={{
+                    position: "absolute",
+                    top: "24px",
+                    right: "24px",
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "50%",
                     opacity: 0.08,
-                    background: testimonials[index].color 
-                  }} 
+                    background: testimonials[index].color
+                  }}
                 />
               </motion.div>
             </AnimatePresence>
 
             {/* Slider Navigation Dots and Controls */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "24px", marginTop: "32px" }}>
-              <button
+              <motion.button
                 onClick={prev}
+                whileHover={{ scale: 1.1, backgroundColor: "#006B94", color: "#ffffff" }}
+                whileTap={{ scale: 0.9 }}
                 style={{
                   width: "44px",
                   height: "44px",
@@ -199,27 +267,25 @@ export default function Testimonials() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  cursor: "pointer",
-                  transition: "all 200ms"
+                  cursor: "pointer"
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#006B94"; e.currentTarget.style.color = "#ffffff"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#006B94"; }}
               >
                 <ChevronLeft size={18} />
-              </button>
+              </motion.button>
 
               <div style={{ display: "flex", gap: "8px" }}>
                 {testimonials.map((_, i) => (
-                  <button
+                  <motion.button
                     key={i}
                     onClick={() => setIndex(i)}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
                     style={{
                       padding: 0,
                       border: "none",
                       cursor: "pointer",
                       borderRadius: "99px",
                       height: "10px",
-                      transition: "all 300ms",
                       width: i === index ? "32px" : "10px",
                       backgroundColor: i === index ? "#006B94" : "rgba(0, 107, 148, 0.2)"
                     }}
@@ -227,8 +293,10 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <button
+              <motion.button
                 onClick={next}
+                whileHover={{ scale: 1.1, backgroundColor: "#006B94", color: "#ffffff" }}
+                whileTap={{ scale: 0.9 }}
                 style={{
                   width: "44px",
                   height: "44px",
@@ -239,14 +307,11 @@ export default function Testimonials() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  cursor: "pointer",
-                  transition: "all 200ms"
+                  cursor: "pointer"
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#006B94"; e.currentTarget.style.color = "#ffffff"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#006B94"; }}
               >
                 <ChevronRight size={18} />
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.div>
@@ -262,22 +327,29 @@ export default function Testimonials() {
           {testimonials.map((t, i) => {
             const isSelected = i === index;
             return (
-              <button
+              <motion.button
                 key={i}
                 onClick={() => setIndex(i)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                whileHover={{ y: -4, scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
                 style={{
                   borderRadius: "16px",
                   padding: "16px",
                   textAlign: "center",
                   cursor: "pointer",
-                  transition: "all 300ms",
                   border: isSelected ? "1px solid transparent" : "1px solid #f3f4f6",
-                  boxShadow: isSelected ? "0 10px 15px -3px rgba(0, 107, 148, 0.15)" : "none",
+                  boxShadow: isSelected ? "0 10px 25px -3px rgba(0, 107, 148, 0.3)" : "0 1px 3px rgba(0,0,0,0.05)",
                   transform: isSelected ? "scale(1.04)" : "scale(1)",
                   backgroundColor: isSelected ? "#006B94" : "#ffffff",
+                  transition: "all 300ms"
                 }}
               >
-                <div
+                <motion.div
+                  animate={isSelected ? { rotate: [0, 360] } : {}}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                   style={{
                     width: "40px",
                     height: "40px",
@@ -293,14 +365,14 @@ export default function Testimonials() {
                   }}
                 >
                   {t.avatar}
-                </div>
-                <div 
+                </motion.div>
+                <div
                   className="font-semibold text-xs truncate"
                   style={{ color: isSelected ? "#ffffff" : "#374151" }}
                 >
                   {t.name.split(" ")[0]}
                 </div>
-              </button>
+              </motion.button>
             );
           })}
         </motion.div>

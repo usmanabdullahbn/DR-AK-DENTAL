@@ -100,6 +100,8 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #002D40 0%, #004D6B 30%, #006B94 60%, #00898A 100%)",
+        backgroundSize: "200% 200%",
+        animation: "gradient-shift 12s ease infinite",
         boxSizing: "border-box",
         paddingTop: "120px",
         paddingBottom: "80px",
@@ -109,12 +111,34 @@ export default function Hero() {
     >
       {/* Background Graphic Elements */}
       <div className="absolute inset-0 overflow-hidden" style={{ pointerEvents: "none" }}>
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #00A19A, transparent)" }} />
-        <div className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #CC2936, transparent)" }} />
-        <div className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, #D4A843, transparent)" }} />
+        <motion.div
+          className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, #00A19A, transparent)" }}
+          animate={{ scale: [1, 1.2, 1], x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 -left-20 w-72 h-72 rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, #CC2936, transparent)" }}
+          animate={{ scale: [1, 1.15, 1], x: [0, -20, 0], y: [0, 25, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-0 right-1/3 w-80 h-80 rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, #D4A843, transparent)" }}
+          animate={{ scale: [1, 1.1, 1], x: [0, 15, 0], y: [0, -15, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        {/* Rotating decorative rings */}
+        <div
+          className="absolute top-1/2 left-1/2 w-[700px] h-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.04] animate-spin-slow"
+          style={{ border: "2px dashed rgba(255,255,255,0.6)" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.05] animate-spin-reverse"
+          style={{ border: "1px solid rgba(255,255,255,0.5)" }}
+        />
 
         {/* Backdrop Grid Pattern */}
         <div className="absolute inset-0 opacity-5"
@@ -287,9 +311,26 @@ export default function Hero() {
             >
               {/* Central Circle Display Element */}
               <div className="relative w-full aspect-square mx-auto">
+                {/* Pulse rings behind central circle */}
+                <div
+                  className="absolute inset-6 rounded-full animate-pulse-ring"
+                  style={{ background: "rgba(0, 107, 148, 0.25)" }}
+                />
+                <div
+                  className="absolute inset-6 rounded-full animate-pulse-ring"
+                  style={{ background: "rgba(0, 161, 154, 0.18)", animationDelay: "1.2s" }}
+                />
+
+                {/* Rotating ring around circle */}
+                <div
+                  className="absolute inset-2 rounded-full animate-spin-slow"
+                  style={{ border: "1px dashed rgba(255,255,255,0.18)" }}
+                />
+
                 <motion.div
                   animate={{ scale: [1, 1.02, 1] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  whileHover={{ scale: 1.05, rotate: 3 }}
                   style={{
                     position: "absolute",
                     inset: "24px",
@@ -303,34 +344,43 @@ export default function Hero() {
                     backgroundColor: "rgba(0, 107, 148, 0.25)"
                   }}
                 >
-                  <div style={{ fontSize: "90px", lineHeight: "1" }}>🦷</div>
+                  <motion.div
+                    animate={{ rotate: [0, 8, -8, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    style={{ fontSize: "90px", lineHeight: "1" }}
+                  >
+                    🦷
+                  </motion.div>
                   <div className="font-display" style={{ color: "#ffffff", fontWeight: "700", fontSize: "22px", marginTop: "12px" }}>DR AK Dental</div>
                   <div className="font-body" style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px", marginTop: "2px" }}>& Aesthetic Clinic</div>
                 </motion.div>
 
                 {/* Orbiting Satellite Badges */}
                 <motion.div
-                  animate={{ y: [0, -12, 0] }}
+                  animate={{ y: [0, -12, 0], rotate: [0, 8, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ position: "absolute", top: "8px", right: "16px", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle }}
+                  whileHover={{ scale: 1.15 }}
+                  style={{ position: "absolute", top: "8px", right: "16px", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle, cursor: "pointer" }}
                 >
                   <div style={{ fontSize: "18px" }}>✨</div>
                   <div className="font-body" style={{ color: "#ffffff", fontSize: "11px", fontWeight: "600", marginTop: "2px" }}>Whitening</div>
                 </motion.div>
 
                 <motion.div
-                  animate={{ y: [0, 12, 0] }}
+                  animate={{ y: [0, 12, 0], rotate: [0, -8, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  style={{ position: "absolute", bottom: "16px", left: "0px", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle }}
+                  whileHover={{ scale: 1.15 }}
+                  style={{ position: "absolute", bottom: "16px", left: "0px", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle, cursor: "pointer" }}
                 >
                   <div style={{ fontSize: "18px" }}>🔬</div>
                   <div className="font-body" style={{ color: "#ffffff", fontSize: "11px", fontWeight: "600", marginTop: "2px" }}>Advanced</div>
                 </motion.div>
 
                 <motion.div
-                  animate={{ y: [0, -10, 0] }}
+                  animate={{ y: [0, -10, 0], rotate: [0, 6, 0] }}
                   transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                  style={{ position: "absolute", top: "50%", right: "-24px", transform: "translateY(-50%)", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle }}
+                  whileHover={{ scale: 1.15 }}
+                  style={{ position: "absolute", top: "50%", right: "-24px", transform: "translateY(-50%)", width: "84px", height: "84px", borderRadius: "50%", display: "flex", alignItems: "center", flexDirection: "column", textAlign: "center", justifyContent: "center", ...glassStyle, cursor: "pointer" }}
                 >
                   <div style={{ fontSize: "18px" }}>💎</div>
                   <div className="font-body" style={{ color: "#ffffff", fontSize: "11px", fontWeight: "600", marginTop: "2px" }}>Veneers</div>
@@ -341,6 +391,7 @@ export default function Hero() {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                whileHover={{ scale: 1.08, y: -12 }}
                 style={{
                   position: "absolute",
                   top: "30%",
@@ -348,11 +399,21 @@ export default function Hero() {
                   borderRadius: "16px",
                   padding: "14px",
                   minWidth: "150px",
-                  ...glassStyle
+                  ...glassStyle,
+                  cursor: "pointer"
                 }}
               >
                 <div style={{ display: "flex", gap: "2px", color: "#FBBF24" }}>
-                  {[...Array(5)].map((_, s) => <Star key={s} size={13} fill="#FBBF24" stroke="none" />)}
+                  {[...Array(5)].map((_, s) => (
+                    <motion.span
+                      key={s}
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: s * 0.15 }}
+                      style={{ display: "inline-flex" }}
+                    >
+                      <Star size={13} fill="#FBBF24" stroke="none" />
+                    </motion.span>
+                  ))}
                 </div>
                 <div className="font-body" style={{ color: "#ffffff", fontSize: "12px", fontWeight: "600", marginTop: "6px" }}>Top Google Reviews</div>
               </motion.div>
@@ -369,20 +430,31 @@ export default function Hero() {
           style={{ marginTop: "72px", boxSizing: "border-box" }}
         >
           {stats.map((stat, i) => (
-            <div
+            <motion.div
               key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 + i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.03, borderColor: "rgba(255,255,255,0.4)" }}
               style={{
                 ...glassStyle,
                 borderRadius: "20px",
                 padding: "24px 16px",
                 textAlign: "center",
-                boxSizing: "border-box"
+                boxSizing: "border-box",
+                cursor: "pointer"
               }}
             >
-              <div style={{ fontSize: "28px", marginBottom: "8px" }}>{stat.icon}</div>
+              <motion.div
+                animate={{ y: [0, -4, 0], rotate: [0, 6, -6, 0] }}
+                transition={{ duration: 3 + i * 0.4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                style={{ fontSize: "28px", marginBottom: "8px", display: "inline-block" }}
+              >
+                {stat.icon}
+              </motion.div>
               <div className="font-display" style={{ color: "#ffffff", fontWeight: "800", fontSize: "24px", lineHeight: "1.2" }}>{stat.value}</div>
               <div className="font-body" style={{ color: "rgba(255,255,255,0.6)", fontSize: "13px", marginTop: "4px" }}>{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
